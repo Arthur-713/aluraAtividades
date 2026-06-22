@@ -24,16 +24,6 @@
             padding: 40px 20px;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 36px;
-        }
-
-        header p {
-            margin-top: 10px;
-            font-size: 16px;
-        }
-
         .content {
             padding: 20px;
         }
@@ -54,6 +44,17 @@
             margin: 10px 0;
             font-style: italic;
         }
+
+        .botoes {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -68,7 +69,6 @@
 
         <img 
             src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
-            alt="Praia paradisíaca com mar azul e céu aberto, representando viagens e descoberta de novos destinos"
             class="post-image"
         >
 
@@ -77,45 +77,60 @@
         <p class="author">Por: Arthur Ferraro urban</p>
 
         <p>
-            Viajar é uma das experiências mais enriquecedoras que podemos ter.
-            Conhecer novos lugares, culturas diferentes e pessoas incríveis
-            transforma a forma como enxergamos o mundo.
-
-            Neste blog, vou compartilhar minhas experiências de viagem,
-            dicas de destinos, planejamento, economia e tudo o que aprendi
-            ao longo das minhas aventuras. A ideia é ajudar outras pessoas
-            a viajarem mais e melhor, aproveitando cada momento.
-
-            Seja uma viagem curta de fim de semana ou uma grande aventura
-            internacional, sempre há algo novo para descobrir. Aqui você
-            vai encontrar inspiração para explorar o mundo e sair da rotina.
-
-            Prepare sua mala e venha comigo nessa jornada!
+            Viajar é uma das experiências mais enriquecedoras...
         </p>
+
+        <!-- BOTÕES -->
+        <div class="botoes">
+            <button id="like">👍 Like (<span id="likeCount">0</span>)</button>
+            <button id="dislike">👎 Dislike (<span id="dislikeCount">0</span>)</button>
+        </div>
 
     </div>
 </div>
 
-</body>
 <script>
-    const botoes = document.querySelectorAll("button");
-    
-    botoes.forEach(function (botao) {
-        let curtiu = false;
-        botao.addEventListener("click", botaoClicado);
-        function botaoClicado(){
-            console.log("Fui clicado");
-            let texto = botao.querySelector("span");
-            if (curtiu === false){
-                texto.textContent++;
-                curtiu = true;
-            } else {
-                texto.textContent--;
-                curtiu = false;
-            } 
-        }
-    })
+    let likeBtn = document.getElementById("like");
+    let dislikeBtn = document.getElementById("dislike");
 
-    
+    let likeCount = document.getElementById("likeCount");
+    let dislikeCount = document.getElementById("dislikeCount");
+
+    let curtiu = false;
+    let descurtiu = false;
+
+    likeBtn.addEventListener("click", function() {
+        if (!curtiu) {
+            likeCount.textContent++;
+            curtiu = true;
+
+            // se tinha dislike, remove
+            if (descurtiu) {
+                dislikeCount.textContent--;
+                descurtiu = false;
+            }
+        } else {
+            likeCount.textContent--;
+            curtiu = false;
+        }
+    });
+
+    dislikeBtn.addEventListener("click", function() {
+        if (!descurtiu) {
+            dislikeCount.textContent++;
+            descurtiu = true;
+
+            // se tinha like, remove
+            if (curtiu) {
+                likeCount.textContent--;
+                curtiu = false;
+            }
+        } else {
+            dislikeCount.textContent--;
+            descurtiu = false;
+        }
+    });
 </script>
+
+</body>
 </html>

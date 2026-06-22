@@ -90,45 +90,49 @@
 </div>
 
 <script>
-    let likeBtn = document.getElementById("like");
-    let dislikeBtn = document.getElementById("dislike");
+    const artigos = document.querySelectorAll("article");
 
-    let likeCount = document.getElementById("likeCount");
-    let dislikeCount = document.getElementById("dislikeCount");
+    artigos.forEach(function (artigo) {
+        const botoes = artigo.querySelectorAll("button");
 
-    let curtiu = false;
-    let descurtiu = false;
+        const likeBtn = botoes[0];
+        const dislikeBtn = botoes[1];
 
-    likeBtn.addEventListener("click", function() {
-        if (!curtiu) {
-            likeCount.textContent++;
-            curtiu = true;
+        const likeSpan = likeBtn.querySelector("span");
+        const dislikeSpan = dislikeBtn.querySelector("span");
 
-            // se tinha dislike, remove
-            if (descurtiu) {
-                dislikeCount.textContent--;
-                descurtiu = false;
-            }
-        } else {
-            likeCount.textContent--;
-            curtiu = false;
-        }
-    });
+        let curtiu = false;
+        let descurtiu = false;
 
-    dislikeBtn.addEventListener("click", function() {
-        if (!descurtiu) {
-            dislikeCount.textContent++;
-            descurtiu = true;
+        likeBtn.addEventListener("click", function () {
+            if (!curtiu) {
+                likeSpan.textContent++;
+                curtiu = true;
 
-            // se tinha like, remove
-            if (curtiu) {
-                likeCount.textContent--;
+                if (descurtiu) {
+                    dislikeSpan.textContent--;
+                    descurtiu = false;
+                }
+            } else {
+                likeSpan.textContent--;
                 curtiu = false;
             }
-        } else {
-            dislikeCount.textContent--;
-            descurtiu = false;
-        }
+        });
+
+        dislikeBtn.addEventListener("click", function () {
+            if (!descurtiu) {
+                dislikeSpan.textContent++;
+                descurtiu = true;
+
+                if (curtiu) {
+                    likeSpan.textContent--;
+                    curtiu = false;
+                }
+            } else {
+                dislikeSpan.textContent--;
+                descurtiu = false;
+            }
+        });
     });
 </script>
 

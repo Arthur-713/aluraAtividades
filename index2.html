@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu blog de viagens</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+        }
+
+        header {
+            background-color: #2c5d63;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #2c5d63;
+        }
+
+        .author {
+            margin: 10px 0;
+            font-style: italic;
+        }
+
+        /* Seção de Comentários */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid #2c5d63;
+            padding-top: 20px;
+        }
+
+        .comment {
+            background-color: #f9f9f9;
+            border-left: 4px solid #2c5d63;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .comment-text {
+            margin: 0 0 10px 0;
+            color: #555;
+        }
+
+        /* Botões de Reação */
+        .reaction-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-reaction {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+
+        .btn-reaction:hover {
+            background-color: #f0f0f0;
+        }
+
+        .btn-reaction.active-like {
+            background-color: #e2f0d9;
+            border-color: #a9d18e;
+        }
+
+        .btn-reaction.active-dislike {
+            background-color: #fce4d6;
+            border-color: #f4b183;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Meu blog de viagens</h1>
+        <p>Explorando o mundo e compartilhando experiências incríveis</p>
+    </header>
+
+    <div class="content">
+
+        <img 
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+            alt="Praia paradisíaca com mar azul e céu aberto, representando viagens e descoberta de novos destinos"
+            class="post-image"
+        >
+
+        <h2>Minha primeira viagem</h2>
+
+        <p class="author">Por: Arthur Ferraro urban</p>
+
+        <p>
+            Viajar é uma das experiências mais enriquecedoras que podemos ter.
+            Conhecer novos lugares, culturas diferentes e pessoas incríveis
+            transforma a forma como enxergamos o mundo.
+        </p>
+        <p>
+            Neste blog, vou compartilhar minhas experiências de viagem,
+            dicas de destinos, planejamento, economia e tudo o que aprendi
+            ao longo das minhas aventuras. A ideia é ajudar outras pessoas
+            a viajarem mais e melhor, aproveitando cada momento.
+        </p>
+        <p>
+            Seja uma viagem curta de fim de semana ou uma grande aventura
+            internacional, sempre há algo novo para descobrir. Aqui você
+            vai encontrar inspiração para explorar o mundo e sair da rotina.
+        </p>
+        <p>
+            Prepare sua mala e venha comigo nessa jornada!
+        </p>
+
+        <div class="comments-section">
+            <h3>Comentários</h3>
+
+            <div class="comment">
+                <div class="comment-author">Lucas Silva</div>
+                <p class="comment-text">Texto incrível! Me deu muita vontade de arrumar as malas e viajar também.</p>
+                <div class="reaction-buttons">
+                    <button class="btn-reaction btn-like">👍 <span>0</span></button>
+                    <button class="btn-reaction btn-dislike">👎 <span>0</span></button>
+                </div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-author">Mariana Costa</div>
+                <p class="comment-text">Adorei as dicas! Qual vai ser o próximo destino do blog?</p>
+                <div class="reaction-buttons">
+                    <button class="btn-reaction btn-like">👍 <span>0</span></button>
+                    <button class="btn-reaction btn-dislike">👎 <span>0</span></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+<script>
+    // Seleciona todos os blocos de comentários
+    const comentarios = document.querySelectorAll(".comment");
+
+    comentarios.forEach(function (comentario) {
+        const btnLike = comentario.querySelector(".btn-like");
+        const btnDislike = comentario.querySelector(".btn-dislike");
+        
+        let curtido = false;
+        let descurtido = false;
+
+        // Lógica do botão de Like
+        btnLike.addEventListener("click", function () {
+            let contadorLike = btnLike.querySelector("span");
+            let contadorDislike = btnDislike.querySelector("span");
+
+            if (!curtido) {
+                contadorLike.textContent++;
+                curtido = true;
+                btnLike.classList.add("active-like");
+
+                // Se o dislike estava ativo, remove ele
+                if (descurtido) {
+                    contadorDislike.textContent--;
+                    descurtido = false;
+                    btnDislike.classList.remove("active-dislike");
+                }
+            } else {
+                contadorLike.textContent--;
+                curtido = false;
+                btnLike.classList.remove("active-like");
+            }
+        });
+
+        // Lógica do botão de Dislike
+        btnDislike.addEventListener("click", function () {
+            let contadorLike = btnLike.querySelector("span");
+            let contadorDislike = btnDislike.querySelector("span");
+
+            if (!descurtido) {
+                contadorDislike.textContent++;
+                descurtido = true;
+                btnDislike.classList.add("active-dislike");
+
+                // Se o like estava ativo, remove ele
+                if (curtido) {
+                    contadorLike.textContent--;
+                    curtido = false;
+                    btnLike.classList.remove("active-like");
+                }
+            } else {
+                contadorDislike.textContent--;
+                descurtido = false;
+                btnDislike.classList.remove("active-dislike");
+            }
+        });
+    });
+</script>
+</html>

@@ -106,30 +106,30 @@
 
         likeBtn.addEventListener("click", function () {
             if (!curtiu) {
-                likeSpan.textContent++;
+                likeSpan.textContent = Number(likeSpan.textContent) + 1;
                 curtiu = true;
 
                 if (descurtiu) {
-                    dislikeSpan.textContent--;
+                    dislikeSpan.textContent = Number(dislikeSpan.textContent) - 1;
                     descurtiu = false;
                 }
             } else {
-                likeSpan.textContent--;
+                likeSpan.textContent = Number(likeSpan.textContent) - 1;
                 curtiu = false;
             }
         });
 
         dislikeBtn.addEventListener("click", function () {
             if (!descurtiu) {
-                dislikeSpan.textContent++;
+                dislikeSpan.textContent = Number(dislikeSpan.textContent) + 1;
                 descurtiu = true;
 
                 if (curtiu) {
-                    likeSpan.textContent--;
+                    likeSpan.textContent = Number(likeSpan.textContent) - 1;
                     curtiu = false;
                 }
             } else {
-                dislikeSpan.textContent--;
+                dislikeSpan.textContent = Number(dislikeSpan.textContent) - 1;
                 descurtiu = false;
             }
         });

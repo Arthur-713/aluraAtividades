@@ -1,139 +1,297 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Meu blog de viagens</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Blog de Viagens</title>
 
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            background-color: #ffffff;
-            border: 1px solid #ccc;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        header {
-            background-color: #2c5d63;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #f5f7fa;
+    color: #333;
+}
 
-        .content {
-            padding: 20px;
-        }
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
 
-        .post-image {
-            width: 100%;
-            max-width: 600px;
-            display: block;
-            margin: 20px auto;
-            border-radius: 8px;
-        }
+header {
+    background: linear-gradient(135deg, #2c5d63, #3d7f87);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
 
-        h2 {
-            color: #2c5d63;
-        }
+header h1 {
+    margin-bottom: 10px;
+}
 
-        .author {
-            margin: 10px 0;
-            font-style: italic;
-        }
+.content {
+    padding: 30px;
+}
 
-        .botoes {
-            margin-top: 20px;
-        }
+.post-image {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
 
-        button {
-            padding: 10px 15px;
-            margin-right: 10px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
+h2 {
+    color: #2c5d63;
+    margin-bottom: 10px;
+}
+
+.author {
+    color: #777;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+p {
+    line-height: 1.7;
+}
+
+.botoes {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+button {
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.like {
+    background: #28a745;
+    color: white;
+}
+
+.like:hover {
+    background: #218838;
+}
+
+.dislike {
+    background: #dc3545;
+    color: white;
+}
+
+.dislike:hover {
+    background: #c82333;
+}
+
+button.active {
+    transform: scale(1.05);
+}
+
+h3 {
+    margin-top: 35px;
+    margin-bottom: 15px;
+    color: #2c5d63;
+}
+
+.comentario {
+    background: #f8f9fa;
+    padding: 18px;
+    border-left: 5px solid #2c5d63;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.comentario strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c5d63;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 15px;
+    }
+
+    .botoes {
+        flex-direction: column;
+    }
+}
+</style>
 </head>
+
 <body>
 
 <div class="container">
+
     <header>
-        <h1>Meu blog de viagens</h1>
+        <h1>🌍 Meu Blog de Viagens</h1>
         <p>Explorando o mundo e compartilhando experiências incríveis</p>
     </header>
 
-    <div class="content">
+    <article class="content">
 
-        <img 
-            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+        <img
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+            alt="Praia paradisíaca"
             class="post-image"
         >
 
-        <h2>Minha primeira viagem</h2>
+        <h2>Minha Primeira Viagem</h2>
 
-        <p class="author">Por: Arthur Ferraro urban</p>
+        <p class="author">Por Arthur Ferraro Urban</p>
 
         <p>
-            Viajar é uma das experiências mais enriquecedoras...
+            Viajar é uma das experiências mais enriquecedoras da vida.
+            Conhecer novas culturas, experimentar diferentes culinárias
+            e criar memórias inesquecíveis transforma nossa forma de ver o mundo.
+            Nesta primeira aventura, descobri lugares incríveis e aprendi muito
+            sobre mim mesmo.
         </p>
 
-        <!-- BOTÕES -->
-        <div class="botoes">
-            <button id="like">👍 Like (<span id="likeCount">0</span>)</button>
-            <button id="dislike">👎 Dislike (<span id="dislikeCount">0</span>)</button>
+        <!-- Likes do artigo -->
+        <div class="botoes avaliacao">
+            <button class="like">
+                👍 Like (<span>0</span>)
+            </button>
+
+            <button class="dislike">
+                👎 Dislike (<span>0</span>)
+            </button>
         </div>
 
-    </div>
+        <!-- Comentários -->
+        <h3>Comentários</h3>
+
+        <div class="comentario">
+            <strong>Mariana Silva</strong>
+            <p>
+                Adorei o relato! A foto ficou incrível e me deu vontade de visitar esse lugar.
+            </p>
+
+            <div class="botoes avaliacao">
+                <button class="like">
+                    👍 Like (<span>0</span>)
+                </button>
+
+                <button class="dislike">
+                    👎 Dislike (<span>0</span>)
+                </button>
+            </div>
+        </div>
+
+        <div class="comentario">
+            <strong>Carlos Mendes</strong>
+            <p>
+                Viajar realmente muda nossa visão de mundo. Parabéns pelo artigo!
+            </p>
+
+            <div class="botoes avaliacao">
+                <button class="like">
+                    👍 Like (<span>0</span>)
+                </button>
+
+                <button class="dislike">
+                    👎 Dislike (<span>0</span>)
+                </button>
+            </div>
+        </div>
+
+        <div class="comentario">
+            <strong>Fernanda Rocha</strong>
+            <p>
+                Que experiência maravilhosa! Estou planejando minha primeira viagem internacional.
+            </p>
+
+            <div class="botoes avaliacao">
+                <button class="like">
+                    👍 Like (<span>0</span>)
+                </button>
+
+                <button class="dislike">
+                    👎 Dislike (<span>0</span>)
+                </button>
+            </div>
+        </div>
+
+    </article>
+
 </div>
 
 <script>
-    const artigos = document.querySelectorAll("article");
+// Funciona para o artigo e para todos os comentários
+document.querySelectorAll(".avaliacao").forEach(avaliacao => {
 
-    artigos.forEach(function (artigo) {
-        const botoes = artigo.querySelectorAll("button");
+    const likeBtn = avaliacao.querySelector(".like");
+    const dislikeBtn = avaliacao.querySelector(".dislike");
 
-        const likeBtn = botoes[0];
-        const dislikeBtn = botoes[1];
+    const likeCount = likeBtn.querySelector("span");
+    const dislikeCount = dislikeBtn.querySelector("span");
 
-        const likeSpan = likeBtn.querySelector("span");
-        const dislikeSpan = dislikeBtn.querySelector("span");
+    let curtiu = false;
+    let descurtiu = false;
 
-        let curtiu = false;
-        let descurtiu = false;
+    likeBtn.addEventListener("click", () => {
 
-        likeBtn.addEventListener("click", function () {
-            if (!curtiu) {
-                likeSpan.textContent = Number(likeSpan.textContent) + 1;
-                curtiu = true;
+        if (!curtiu) {
+            likeCount.textContent = Number(likeCount.textContent) + 1;
+            curtiu = true;
+            likeBtn.classList.add("active");
 
-                if (descurtiu) {
-                    dislikeSpan.textContent = Number(dislikeSpan.textContent) - 1;
-                    descurtiu = false;
-                }
-            } else {
-                likeSpan.textContent = Number(likeSpan.textContent) - 1;
-                curtiu = false;
-            }
-        });
+            if (descurtiu) {
+                dislikeCount.textContent =
+                    Number(dislikeCount.textContent) - 1;
 
-        dislikeBtn.addEventListener("click", function () {
-            if (!descurtiu) {
-                dislikeSpan.textContent = Number(dislikeSpan.textContent) + 1;
-                descurtiu = true;
-
-                if (curtiu) {
-                    likeSpan.textContent = Number(likeSpan.textContent) - 1;
-                    curtiu = false;
-                }
-            } else {
-                dislikeSpan.textContent = Number(dislikeSpan.textContent) - 1;
                 descurtiu = false;
+                dislikeBtn.classList.remove("active");
             }
-        });
+        } else {
+            likeCount.textContent =
+                Number(likeCount.textContent) - 1;
+
+            curtiu = false;
+            likeBtn.classList.remove("active");
+        }
     });
+
+    dislikeBtn.addEventListener("click", () => {
+
+        if (!descurtiu) {
+            dislikeCount.textContent =
+                Number(dislikeCount.textContent) + 1;
+
+            descurtiu = true;
+            dislikeBtn.classList.add("active");
+
+            if (curtiu) {
+                likeCount.textContent =
+                    Number(likeCount.textContent) - 1;
+
+                curtiu = false;
+                likeBtn.classList.remove("active");
+            }
+        } else {
+            dislikeCount.textContent =
+                Number(dislikeCount.textContent) - 1;
+
+            descurtiu = false;
+            dislikeBtn.classList.remove("active");
+        }
+    });
+});
 </script>
 
 </body>
